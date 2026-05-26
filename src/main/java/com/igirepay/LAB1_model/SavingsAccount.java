@@ -3,7 +3,7 @@ package com.igirepay.LAB1_model;
 import com.igirepay.LAB3_exception.*;
 
 import java.math.BigDecimal;
-
+import java.util.Scanner;
 public class SavingsAccount extends Account {
     private int withdrawalLimit;      // max withdrawals per month
     private int withdrawalCount;      // current month usage

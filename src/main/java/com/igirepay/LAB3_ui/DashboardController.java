@@ -16,6 +16,7 @@ import javafx.scene.text.Text;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Scanner;
 
 public class DashboardController {
     private final ScreenManager screenManager;

@@ -7,7 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.VBox;
-
+import java.util.Scanner;
 public class ReceiptController {
     private final ScreenManager screenManager;
     private final Transaction transaction;

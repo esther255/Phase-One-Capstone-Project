@@ -3,6 +3,7 @@ package com.igirepay.LAB1_model;
 import com.igirepay.LAB3_exception.*;
 
 import java.math.BigDecimal;
+import java.util.Scanner;
 
 public class WalletAccount extends Account {
 

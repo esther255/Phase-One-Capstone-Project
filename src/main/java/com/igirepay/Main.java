@@ -5,6 +5,7 @@ import com.igirepay.LAB2_dao.*;
 import com.igirepay.LAB2_dao.DatabaseInitializer;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import java.util.Scanner;
 
 public class Main extends Application {
     private Stage primaryStage;
@@ -41,7 +42,7 @@ public class Main extends Application {
         screenManager = new ScreenManager(primaryStage, authService, accountService,
                 transactionService, transferService, loanService, csvExportService);
         screenManager.showLoginScreen();
-        primaryStage.setTitle("IgirePay - MTN MoMo Desktop");
+        primaryStage.setTitle("IgirePay - Desktop");
         primaryStage.show();
     }
 

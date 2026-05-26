@@ -3,6 +3,7 @@ package com.igirepay.LAB2_dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Scanner;
 
 public class ProcessedRequestDAOImpl implements ProcessedRequestDAO {
     @Override

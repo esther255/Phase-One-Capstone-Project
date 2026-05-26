@@ -5,6 +5,7 @@ import com.igirepay.LAB3_ui.*;
 import com.igirepay.LAB1_model.Transaction;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import java.util.Scanner;
 
 public class ScreenManager {
     private final Stage stage;

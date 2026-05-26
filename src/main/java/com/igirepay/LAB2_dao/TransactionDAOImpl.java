@@ -5,6 +5,7 @@ import com.igirepay.LAB1_model.Transaction;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class TransactionDAOImpl implements TransactionDAO {
     @Override

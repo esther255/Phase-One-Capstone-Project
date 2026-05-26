@@ -6,6 +6,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import java.math.BigDecimal;
+import java.util.Scanner;
 
 public class SendMoneyController {
     private final ScreenManager screenManager;

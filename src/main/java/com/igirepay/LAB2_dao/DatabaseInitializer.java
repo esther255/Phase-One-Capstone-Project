@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Scanner;
 
 public class DatabaseInitializer {
 
@@ -18,7 +19,7 @@ public class DatabaseInitializer {
                 addColumnIfMissing(conn, "customers", "full_name", "TEXT NOT NULL DEFAULT ''");
                 addColumnIfMissing(conn, "customers", "email", "TEXT NOT NULL DEFAULT ''");
                 addColumnIfMissing(conn, "customers", "phone_number", "TEXT NOT NULL DEFAULT ''");
-                addColumnIfMissing(conn, "customers", "pin_hash", "TEXT NOT NULL DEFAULT ''");
+                addColumnIfMissing(conn, "customers", "pin", "TEXT NOT NULL DEFAULT ''");
                 addColumnIfMissing(conn, "customers", "created_at", "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP");
                 addColumnIfMissing(conn, "customers", "failed_attempts", "INTEGER NOT NULL DEFAULT 0");
                 ensureSerialPrimaryKey(conn, "customers", "id");

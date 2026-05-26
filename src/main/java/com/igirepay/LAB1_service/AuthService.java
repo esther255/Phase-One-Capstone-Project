@@ -8,6 +8,7 @@ import com.igirepay.LAB1_model.WalletAccount;
 import com.igirepay.LAB3_util.PasswordUtil;
 import java.math.BigDecimal;
 import java.util.Optional;
+import java.util.Scanner;
 
 public class AuthService {
     private final CustomerDAO customerDAO;
@@ -30,7 +31,7 @@ public class AuthService {
         if (failed >= MAX_FAILED_ATTEMPTS) {
             throw new SecurityException("Account locked. Too many failed attempts.");
         }
-        if (!PasswordUtil.verifyPin(pin, customer.getPinHash())) {
+        if (!PasswordUtil.verifyPin(pin, customer.getPin())) {
             customerDAO.incrementFailedAttempts(phoneNumber);
             throw new SecurityException("Invalid PIN. Attempts left: " + (MAX_FAILED_ATTEMPTS - failed - 1));
         }
@@ -46,11 +47,11 @@ public class AuthService {
             throw new IllegalArgumentException("New PIN must be exactly 5 digits.");
         }
         Customer customer = opt.get();
-        if (!PasswordUtil.verifyPin(oldPin, customer.getPinHash())) {
+        if (!PasswordUtil.verifyPin(oldPin, customer.getPin())) {
             throw new SecurityException("Invalid old PIN");
         }
-        String newHash = PasswordUtil.hashPin(newPin);
-        customerDAO.updatePinHash(customerId, newHash);
+        String newHash = PasswordUtil.Pin(newPin);
+        customerDAO.updatePin(customerId, newHash);
     }
 
     // Get customer by ID
@@ -79,7 +80,7 @@ public class AuthService {
         if (customerDAO.findByEmail(email).isPresent()) {
             throw new IllegalArgumentException("Email is already registered.");
         }
-        String hash = PasswordUtil.hashPin(pin);
+        String hash = PasswordUtil.Pin(pin);
         Customer newCustomer = new Customer(fullName, email, phoneNumber, hash);
         customerDAO.save(newCustomer);
 

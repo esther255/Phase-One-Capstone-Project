@@ -1,6 +1,7 @@
 package com.igirepay.LAB1_model;
 
 import java.time.LocalDateTime;
+import java.util.Scanner;
 
 public class Customer {
     private int id;

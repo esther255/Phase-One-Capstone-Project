@@ -4,6 +4,7 @@ import com.igirepay.LAB1_model.Transaction;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.Scanner;
 
 public class CSVExportService {
     public void exportTransactions(List<Transaction> transactions, String filePath) throws Exception {

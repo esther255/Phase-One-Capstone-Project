@@ -44,7 +44,7 @@ public class RegisterController {
         emailField.setMaxWidth(280);
 
         phoneField = new TextField();
-        phoneField.setPromptText("Phone number (e.g. 0788123456)");
+        phoneField.setPromptText("Phone number (e.g. 0790079144)");
         phoneField.setMaxWidth(280);
 
         pinField = new PasswordField();
