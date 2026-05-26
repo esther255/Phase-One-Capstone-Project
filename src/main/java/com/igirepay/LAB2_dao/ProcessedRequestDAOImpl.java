@@ -11,8 +11,9 @@ public class ProcessedRequestDAOImpl implements ProcessedRequestDAO {
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, referenceId);
-            ResultSet rs = pstmt.executeQuery();
-            return rs.next();
+            try (ResultSet rs = pstmt.executeQuery()) {
+                return rs.next();
+            }
         }
     }
 

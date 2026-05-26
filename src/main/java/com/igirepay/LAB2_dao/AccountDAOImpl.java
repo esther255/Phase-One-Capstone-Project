@@ -27,86 +27,77 @@ public class AccountDAOImpl implements AccountDAO {
                 pstmt.setBigDecimal(6, BigDecimal.ZERO);
             }
             pstmt.executeUpdate();
-            ResultSet rs = pstmt.getGeneratedKeys();
-            if (rs.next()) {
-                account.setId(rs.getInt(1));
+            try (ResultSet rs = pstmt.getGeneratedKeys()) {
+                if (rs.next()) {
+                    account.setId(rs.getInt(1));
+                }
             }
         }
     }
 
     @Override
     public Account findById(int id) throws Exception {
-        String sql = "SELECT id, customer_id, account_type, balance, created_at FROM accounts WHERE id = ?";
+        String sql = "SELECT id, customer_id, account_type, balance, created_at, withdrawal_limit, withdrawal_count, withdrawal_fee FROM accounts WHERE id = ?";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, id);
-            ResultSet rs = pstmt.executeQuery();
-            if (rs.next()) {
-                String type = rs.getString("account_type");
-                Account acc;
-                if ("WALLET".equals(type)) {
-                    acc = new WalletAccount();
-                } else {
-                    acc = new SavingsAccount();
-                }
-                acc.setId(rs.getInt("id"));
-                acc.setCustomerId(rs.getInt("customer_id"));
-                acc.setAccountType(type);
-                acc.setBalance(rs.getBigDecimal("balance"));
-                acc.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    String type = rs.getString("account_type");
+                    Account acc;
+                    if ("WALLET".equals(type)) {
+                        acc = new WalletAccount();
+                    } else {
+                        acc = new SavingsAccount();
+                    }
+                    acc.setId(rs.getInt("id"));
+                    acc.setCustomerId(rs.getInt("customer_id"));
+                    acc.setAccountType(type);
+                    acc.setBalance(rs.getBigDecimal("balance"));
+                    acc.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
 
-                // Load savings-specific fields if needed (withdrawal limit/count)
-                if (acc instanceof SavingsAccount) {
-                    loadSavingsDetails((SavingsAccount) acc, conn);
+                    if (acc instanceof SavingsAccount) {
+                        SavingsAccount savings = (SavingsAccount) acc;
+                        savings.setWithdrawalLimit(rs.getInt("withdrawal_limit"));
+                        savings.setWithdrawalCount(rs.getInt("withdrawal_count"));
+                        savings.setWithdrawalFee(rs.getBigDecimal("withdrawal_fee"));
+                    }
+                    return acc;
                 }
-                return acc;
             }
         }
         return null;
     }
 
-    private void loadSavingsDetails(SavingsAccount savings, Connection conn) throws SQLException {
-        // If you add withdrawal_limit and withdrawal_fee columns to accounts table, query them.
-        // For now, we'll use defaults; later we can add columns.
-        // Simpler: store in a separate savings_config table or add columns.
-        // We'll assume accounts table has withdrawal_limit (int), withdrawal_count (int), withdrawal_fee (decimal)
-        String sql = "SELECT withdrawal_limit, withdrawal_count, withdrawal_fee FROM accounts WHERE id = ?";
-        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, savings.getId());
-            ResultSet rs = pstmt.executeQuery();
-            if (rs.next()) {
-                savings.setWithdrawalLimit(rs.getInt("withdrawal_limit"));
-                savings.setWithdrawalCount(rs.getInt("withdrawal_count"));
-                savings.setWithdrawalFee(rs.getBigDecimal("withdrawal_fee"));
-            }
-        }
-    }
-
     @Override
     public List<Account> findByCustomerId(int customerId) throws Exception {
         List<Account> accounts = new ArrayList<>();
-        String sql = "SELECT id, customer_id, account_type, balance, created_at FROM accounts WHERE customer_id::text = ?";
+        String sql = "SELECT id, customer_id, account_type, balance, created_at, withdrawal_limit, withdrawal_count, withdrawal_fee FROM accounts WHERE customer_id = ?";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, String.valueOf(customerId));
-            ResultSet rs = pstmt.executeQuery();
-            while (rs.next()) {
-                String type = rs.getString("account_type");
-                Account acc;
-                if ("WALLET".equals(type)) {
-                    acc = new WalletAccount();
-                } else {
-                    acc = new SavingsAccount();
+            pstmt.setInt(1, customerId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    String type = rs.getString("account_type");
+                    Account acc;
+                    if ("WALLET".equals(type)) {
+                        acc = new WalletAccount();
+                    } else {
+                        acc = new SavingsAccount();
+                    }
+                    acc.setId(rs.getInt("id"));
+                    acc.setCustomerId(rs.getInt("customer_id"));
+                    acc.setAccountType(type);
+                    acc.setBalance(rs.getBigDecimal("balance"));
+                    acc.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
+                    if (acc instanceof SavingsAccount) {
+                        SavingsAccount savings = (SavingsAccount) acc;
+                        savings.setWithdrawalLimit(rs.getInt("withdrawal_limit"));
+                        savings.setWithdrawalCount(rs.getInt("withdrawal_count"));
+                        savings.setWithdrawalFee(rs.getBigDecimal("withdrawal_fee"));
+                    }
+                    accounts.add(acc);
                 }
-                acc.setId(rs.getInt("id"));
-                acc.setCustomerId(rs.getInt("customer_id"));
-                acc.setAccountType(type);
-                acc.setBalance(rs.getBigDecimal("balance"));
-                acc.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
-                if (acc instanceof SavingsAccount) {
-                    loadSavingsDetails((SavingsAccount) acc, conn);
-                }
-                accounts.add(acc);
             }
         }
         return accounts;

@@ -43,6 +43,7 @@ public class CustomerDAOImpl implements CustomerDAO {
                     c.setPhoneNumber(rs.getString("phone_number"));
                     c.setPinHash(rs.getString("pin_hash"));
                     c.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
+                    c.setFailedAttempts(rs.getInt("failed_attempts"));
                     return Optional.of(c);
                 }
             }
@@ -65,6 +66,7 @@ public class CustomerDAOImpl implements CustomerDAO {
                     c.setPhoneNumber(rs.getString("phone_number"));
                     c.setPinHash(rs.getString("pin_hash"));
                     c.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
+                    c.setFailedAttempts(rs.getInt("failed_attempts"));
                     return Optional.of(c);
                 }
             }

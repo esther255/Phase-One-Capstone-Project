@@ -9,6 +9,7 @@ public class Customer {
     private String phoneNumber;
     private String pinHash;        // stored as SHA-256 hash
     private LocalDateTime createdAt;
+    private int failedAttempts;
 
     public Customer() {}
 
@@ -38,6 +39,9 @@ public class Customer {
 
     public LocalDateTime getCreatedAt() { return createdAt; }
     public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+
+    public int getFailedAttempts() { return failedAttempts; }
+    public void setFailedAttempts(int failedAttempts) { this.failedAttempts = failedAttempts; }
 
     @Override
     public String toString() {
