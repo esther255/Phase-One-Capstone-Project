@@ -7,21 +7,21 @@ public class Customer {
     private String fullName;
     private String email;
     private String phoneNumber;
-    private String pinHash;        // stored as SHA-256 hash
+    private String pin;        // stored as SHA-256 hash
     private LocalDateTime createdAt;
     private int failedAttempts;
 
     public Customer() {}
 
-    public Customer(String fullName, String email, String phoneNumber, String pinHash) {
+    public Customer(String fullName, String email, String phoneNumber, String pin) {
         this.fullName = fullName;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.pinHash = pinHash;
+        this.pin = pin;
         this.createdAt = LocalDateTime.now();
     }
 
-    // Getters and Setters
+
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 
@@ -34,8 +34,8 @@ public class Customer {
     public String getPhoneNumber() { return phoneNumber; }
     public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
 
-    public String getPinHash() { return pinHash; }
-    public void setPinHash(String pinHash) { this.pinHash = pinHash; }
+    public String getPin() { return pin; }
+    public void setPin(String pin) { this.pin = pin; }
 
     public LocalDateTime getCreatedAt() { return createdAt; }
     public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
