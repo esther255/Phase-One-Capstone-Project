@@ -2,10 +2,9 @@ package com.igirepay.LAB3_util;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Scanner;
 
 public class PasswordUtil {
-    public static String Pin(String pin) {
+    public static String hashPin(String pin) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
             byte[] hash = md.digest(pin.getBytes());
@@ -22,6 +21,6 @@ public class PasswordUtil {
     }
 
     public static boolean verifyPin(String rawPin, String storedHash) {
-        return Pin(rawPin).equals(storedHash);
+        return hashPin(rawPin).equals(storedHash);
     }
 }

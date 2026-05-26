@@ -3,7 +3,6 @@ package com.igirepay.LAB1_model;
 import com.igirepay.LAB3_exception.*;
 
 import java.math.BigDecimal;
-import java.util.Scanner;
 
 public class WalletAccount extends Account {
 
@@ -15,7 +14,7 @@ public class WalletAccount extends Account {
 
     @Override
     public void withdraw(BigDecimal amount) throws InvalidAmountException, InsufficientBalanceException {
-        super.withdraw(amount); // no extra fees or limits
+        super.withdraw(amount);
     }
 
     @Override

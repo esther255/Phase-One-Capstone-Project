@@ -15,6 +15,7 @@ module com.igirepay.igirepay {
     opens com.igirepay.LAB3_util to javafx.fxml;
 
     exports com.igirepay;
+    exports com.igirepay.app;
     exports com.igirepay.igirepay;
     exports com.igirepay.LAB1_model;
     exports com.igirepay.LAB2_dao;

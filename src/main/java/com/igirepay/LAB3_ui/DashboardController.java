@@ -16,7 +16,6 @@ import javafx.scene.text.Text;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Scanner;
 
 public class DashboardController {
     private final ScreenManager screenManager;
@@ -194,7 +193,7 @@ public class DashboardController {
                 if (amountStr != null && !amountStr.trim().isEmpty()) {
                     amount = new BigDecimal(amountStr.trim());
                 }
-                accountService.createSavingsAccount(customerId, amount);
+                accountService.createSavingsAccount(customerId, amount, 3, BigDecimal.valueOf(500));
                 loadAccounts();
                 updateAccountSummary();
                 showAlert("Success", "Savings account created.");

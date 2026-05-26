@@ -12,7 +12,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import java.io.File;
 import java.util.List;
-import java.util.Scanner;
 public class TransactionHistoryController {
     private final ScreenManager screenManager;
     private final int customerId;

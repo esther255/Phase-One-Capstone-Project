@@ -7,12 +7,11 @@ import com.igirepay.LAB3_exception.WithdrawalLimitExceededException;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Scanner;
 
 public abstract class Account {
     protected int id;
     protected int customerId;
-    protected String accountType;   // "WALLET" or "SAVINGS"
+    protected String accountType;   //
     protected BigDecimal balance;
     protected LocalDateTime createdAt;
 
@@ -59,7 +58,7 @@ public abstract class Account {
         this.balance = this.balance.subtract(amount);
     }
 
-    // Polymorphic transaction processing
+
     public abstract Transaction processTransaction(Transaction transaction)
             throws InvalidAmountException, InsufficientBalanceException,
             WithdrawalLimitExceededException, DuplicateTransactionException;

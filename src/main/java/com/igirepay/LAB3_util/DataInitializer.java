@@ -8,7 +8,6 @@ import com.igirepay.LAB1_model.Customer;
 import com.igirepay.LAB1_model.SavingsAccount;
 import com.igirepay.LAB1_model.WalletAccount;
 import java.math.BigDecimal;
-import java.util.Scanner;
 
 public class DataInitializer {
 
@@ -20,7 +19,7 @@ public class DataInitializer {
             // Check if sample customer already exists
             if (!customerDAO.findByPhoneNumber("0790079144").isPresent()) {
                 Customer sample = new Customer("Esther", "esther@gmail.com", "0790079144",
-                        PasswordUtil.Pin("12345"));   // PasswordUtil is in same package
+                        PasswordUtil.hashPin("12345"));
                 customerDAO.save(sample);
 
                 // Create wallet account

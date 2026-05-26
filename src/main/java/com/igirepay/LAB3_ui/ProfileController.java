@@ -9,7 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
-import java.util.Scanner;
+
 public class ProfileController {
     private final ScreenManager screenManager;
     private final int customerId;
@@ -38,9 +38,7 @@ public class ProfileController {
             Button updateBtn = new Button("Update Profile");
             updateBtn.setOnAction(e -> {
                 try {
-                    customer.setFullName(nameField.getText());
-                    customer.setEmail(emailField.getText());
-                    authService.updateCustomerProfile(customer);
+                    authService.updateCustomerInfo(customerId, nameField.getText(), emailField.getText());
                     showAlert("Success", "Profile updated.");
                     screenManager.showDashboard();
                 } catch (Exception ex) {

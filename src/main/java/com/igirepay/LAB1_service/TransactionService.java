@@ -8,12 +8,11 @@ import com.igirepay.LAB3_util.ReferenceIdGenerator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.Scanner;
 
 public class TransactionService {
     private final TransactionDAO transactionDAO;
     private final ProcessedRequestDAO processedRequestDAO;
-    private static final Set<String> processedRefIdsInMemory = new HashSet<>();
+    private static final Set<String> memorySet = new HashSet<>();
 
     public TransactionService(TransactionDAO transactionDAO, ProcessedRequestDAO processedRequestDAO) {
         this.transactionDAO = transactionDAO;
@@ -22,25 +21,21 @@ public class TransactionService {
 
     public String generateUniqueReference() throws Exception {
         String ref;
-        do {
-            ref = ReferenceIdGenerator.generate();
-        } while (isDuplicate(ref));
+        do { ref = ReferenceIdGenerator.generate(); } while (isDuplicate(ref));
         return ref;
     }
 
-    private boolean isDuplicate(String refId) throws Exception {
-        if (processedRefIdsInMemory.contains(refId)) return true;
-        return processedRequestDAO.exists(refId);
+    private boolean isDuplicate(String ref) throws Exception {
+        return memorySet.contains(ref) || processedRequestDAO.exists(ref);
     }
 
-    public void saveTransaction(Transaction transaction) throws Exception {
-        String refId = transaction.getReferenceId();
-        if (isDuplicate(refId)) {
-            throw new DuplicateTransactionException("Duplicate transaction reference: " + refId);
+    public void saveTransaction(Transaction tx) throws Exception {
+        if (isDuplicate(tx.getReferenceId())) {
+            throw new DuplicateTransactionException("Duplicate reference");
         }
-        processedRequestDAO.save(refId);
-        processedRefIdsInMemory.add(refId);
-        transactionDAO.save(transaction);
+        processedRequestDAO.save(tx.getReferenceId());
+        memorySet.add(tx.getReferenceId());
+        transactionDAO.save(tx);
     }
 
     public List<Transaction> getTransactionHistory(int customerId) throws Exception {

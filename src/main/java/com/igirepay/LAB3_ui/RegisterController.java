@@ -2,6 +2,7 @@ package com.igirepay.LAB3_ui;
 
 import com.igirepay.LAB1_service.AuthService;
 import com.igirepay.ScreenManager;
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -76,23 +77,50 @@ public class RegisterController {
         String pin = pinField.getText().trim();
         String confirmPin = confirmPinField.getText().trim();
 
+        // Validation
         if (fullName.isEmpty() || email.isEmpty() || phone.isEmpty() || pin.isEmpty() || confirmPin.isEmpty()) {
             errorLabel.setText("All fields are required.");
+            errorLabel.setStyle("-fx-fill: red;");
             return;
         }
         if (!pin.equals(confirmPin)) {
             errorLabel.setText("PINs do not match.");
+            errorLabel.setStyle("-fx-fill: red;");
             return;
         }
         if (!pin.matches("\\d{5}")) {
             errorLabel.setText("PIN must be exactly 5 numeric digits.");
+            errorLabel.setStyle("-fx-fill: red;");
+            return;
+        }
+        if (!phone.matches("\\d{9,12}")) {
+            errorLabel.setText("Phone number must contain only digits (9-12 digits).");
+            errorLabel.setStyle("-fx-fill: red;");
+            return;
+        }
+        if (!email.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
+            errorLabel.setText("Invalid email format.");
+            errorLabel.setStyle("-fx-fill: red;");
             return;
         }
 
         try {
             authService.registerCustomer(fullName, email, phone, pin);
             errorLabel.setStyle("-fx-fill: green;");
-            errorLabel.setText("Registration successful. Please log in.");
+            errorLabel.setText("Registration successful! Redirecting to login...");
+
+            // Disable register button to prevent double submission
+            Button registerBtn = (Button) view.getChildren().get(view.getChildren().size() - 3);
+            registerBtn.setDisable(true);
+
+            // Redirect to login screen after 2 seconds
+            new Thread(() -> {
+                try {
+                    Thread.sleep(2000);
+                    Platform.runLater(() -> screenManager.showLoginScreen());
+                } catch (InterruptedException ignored) {}
+            }).start();
+
         } catch (Exception ex) {
             errorLabel.setStyle("-fx-fill: red;");
             errorLabel.setText(ex.getMessage());

@@ -1,27 +1,25 @@
 package com.igirepay.LAB1_model;
 
 import java.time.LocalDateTime;
-import java.util.Scanner;
 
 public class Customer {
     private int id;
     private String fullName;
     private String email;
     private String phoneNumber;
-    private String pin;        // stored as SHA-256 hash
+    private String pinHash;
     private LocalDateTime createdAt;
     private int failedAttempts;
 
     public Customer() {}
 
-    public Customer(String fullName, String email, String phoneNumber, String pin) {
+    public Customer(String fullName, String email, String phoneNumber, String pinHash) {
         this.fullName = fullName;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.pin = pin;
+        this.pinHash = pinHash;
         this.createdAt = LocalDateTime.now();
     }
-
 
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
@@ -35,8 +33,8 @@ public class Customer {
     public String getPhoneNumber() { return phoneNumber; }
     public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
 
-    public String getPin() { return pin; }
-    public void setPin(String pin) { this.pin = pin; }
+    public String getPinHash() { return pinHash; }
+    public void setPinHash(String pinHash) { this.pinHash = pinHash; }
 
     public LocalDateTime getCreatedAt() { return createdAt; }
     public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
@@ -48,5 +46,8 @@ public class Customer {
     public String toString() {
         return String.format("Customer{id=%d, name='%s', phone='%s', email='%s'}",
                 id, fullName, phoneNumber, email);
+    }
+
+    public void setPin(String pin) {
     }
 }

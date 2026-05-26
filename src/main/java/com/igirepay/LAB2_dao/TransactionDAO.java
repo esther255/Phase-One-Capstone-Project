@@ -1,8 +1,7 @@
 package com.igirepay.LAB2_dao;
 
-import com.igirepay.LAB1_model.Transaction;  // ADD THIS IMPORT
+import com.igirepay.LAB1_model.Transaction;
 import java.util.List;
-import java.util.Scanner;
 
 public interface TransactionDAO {
     void save(Transaction transaction) throws Exception;

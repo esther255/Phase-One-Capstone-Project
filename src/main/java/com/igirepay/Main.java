@@ -2,10 +2,8 @@ package com.igirepay;
 
 import com.igirepay.LAB1_service.*;
 import com.igirepay.LAB2_dao.*;
-import com.igirepay.LAB2_dao.DatabaseInitializer;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import java.util.Scanner;
 
 public class Main extends Application {
     private Stage primaryStage;
@@ -22,7 +20,7 @@ public class Main extends Application {
         ProcessedRequestDAO processedRequestDAO = new ProcessedRequestDAOImpl();
 
         // Initialize Services
-        AuthService authService = new AuthService(customerDAO, accountDAO);
+        AuthService authService = new AuthService(customerDAO);
         TransactionService transactionService = new TransactionService(transactionDAO, processedRequestDAO);
         AccountService accountService = new AccountService(accountDAO, transactionService);
 

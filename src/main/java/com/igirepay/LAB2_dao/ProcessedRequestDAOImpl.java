@@ -1,30 +1,27 @@
 package com.igirepay.LAB2_dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.Scanner;
+import java.sql.*;
 
 public class ProcessedRequestDAOImpl implements ProcessedRequestDAO {
     @Override
-    public boolean exists(String referenceId) throws Exception {
+    public boolean exists(String refId) throws Exception {
         String sql = "SELECT 1 FROM processed_requests WHERE reference_id = ?";
         try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, referenceId);
-            try (ResultSet rs = pstmt.executeQuery()) {
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, refId);
+            try (ResultSet rs = ps.executeQuery()) {
                 return rs.next();
             }
         }
     }
 
     @Override
-    public void save(String referenceId) throws Exception {
+    public void save(String refId) throws Exception {
         String sql = "INSERT INTO processed_requests (reference_id) VALUES (?)";
         try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, referenceId);
-            pstmt.executeUpdate();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, refId);
+            ps.executeUpdate();
         }
     }
 }

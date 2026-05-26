@@ -8,7 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.layout.VBox;
-import java.util.Scanner;
+
 public class PinChangeController {
     private final ScreenManager screenManager;
     private final int customerId;

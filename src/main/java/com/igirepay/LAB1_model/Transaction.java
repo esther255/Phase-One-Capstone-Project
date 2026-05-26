@@ -2,17 +2,16 @@ package com.igirepay.LAB1_model;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Scanner;
 
 public class Transaction {
     private int id;
     private int accountId;
-    private String referenceId;      // unique, used for duplicate prevention
-    private String type;             // DEPOSIT, WITHDRAW, SEND_MONEY, RECEIVE_MONEY, SAVINGS_WITHDRAW, etc.
+    private String referenceId;
+    private String type;
     private BigDecimal amount;
     private LocalDateTime createdAt;
-    private Integer senderAccountId;   // for transfers: who sent
-    private Integer recipientAccountId;// for transfers: who received
+    private Integer senderAccountId;
+    private Integer recipientAccountId;//
     private String description;
 
     public Transaction() {}
