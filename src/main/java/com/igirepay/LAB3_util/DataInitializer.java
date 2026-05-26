@@ -1,0 +1,41 @@
+package com.igirepay.LAB3_util;
+
+import com.igirepay.LAB2_dao.AccountDAO;
+import com.igirepay.LAB2_dao.AccountDAOImpl;
+import com.igirepay.LAB2_dao.CustomerDAO;
+import com.igirepay.LAB2_dao.CustomerDAOImpl;
+import com.igirepay.LAB1_model.Customer;
+import com.igirepay.LAB1_model.SavingsAccount;
+import com.igirepay.LAB1_model.WalletAccount;
+import java.math.BigDecimal;
+
+public class DataInitializer {
+
+    public static void initSampleData() {
+        try {
+            CustomerDAO customerDAO = new CustomerDAOImpl();
+            AccountDAO accountDAO = new AccountDAOImpl();
+
+            // Check if sample customer already exists
+            if (!customerDAO.findByPhoneNumber("0788123456").isPresent()) {
+                Customer sample = new Customer("John Doe", "john@example.com", "0788123456",
+                        PasswordUtil.hashPin("12345"));   // PasswordUtil is in same package
+                customerDAO.save(sample);
+
+                // Create wallet account
+                WalletAccount wallet = new WalletAccount(sample.getId(), BigDecimal.valueOf(100000));
+                accountDAO.save(wallet);
+
+                // Create savings account
+                SavingsAccount savings = new SavingsAccount(sample.getId(), BigDecimal.valueOf(50000), 3, BigDecimal.valueOf(500));
+                accountDAO.save(savings);
+
+                System.out.println("Sample data inserted successfully.");
+            } else {
+                System.out.println("Sample customer already exists.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
