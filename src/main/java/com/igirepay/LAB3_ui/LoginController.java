@@ -33,7 +33,7 @@ public class LoginController {
         view.setStyle("-fx-padding: 30; -fx-background-color: #f0f0f0;");
 
         phoneField = new TextField();
-        phoneField.setPromptText("Phone number (e.g., 0788123456)");
+        phoneField.setPromptText("Phone number (e.g., 0790079144)");
         phoneField.setMaxWidth(250);
 
         pinField = new PasswordField();
