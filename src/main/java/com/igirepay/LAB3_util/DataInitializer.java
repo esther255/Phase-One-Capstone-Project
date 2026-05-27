@@ -16,17 +16,16 @@ public class DataInitializer {
             CustomerDAO customerDAO = new CustomerDAOImpl();
             AccountDAO accountDAO = new AccountDAOImpl();
 
-            // Check if sample customer already exists
+
             if (!customerDAO.findByPhoneNumber("0790079144").isPresent()) {
                 Customer sample = new Customer("Esther", "esther@gmail.com", "0790079144",
                         PasswordUtil.hashPin("12345"));
-                customerDAO.save(sample);
 
-                // Create wallet account
+                customerDAO.save(sample);
                 WalletAccount wallet = new WalletAccount(sample.getId(), BigDecimal.valueOf(100000));
                 accountDAO.save(wallet);
 
-                // Create savings account
+
                 SavingsAccount savings = new SavingsAccount(sample.getId(), BigDecimal.valueOf(50000), 3, BigDecimal.valueOf(500));
                 accountDAO.save(savings);
 
