@@ -38,4 +38,7 @@ public class DataInitializer {
             e.printStackTrace();
         }
     }
+
+    public static void initSampleData(CustomerDAO customerDAO, AccountDAO accountDAO) {
+    }
 }

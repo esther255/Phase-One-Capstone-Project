@@ -6,42 +6,37 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-    private Stage primaryStage;
-    private ScreenManager screenManager;
-
     @Override
-    public void start(Stage stage) throws Exception {
-        this.primaryStage = stage;
-
-        // Initialize DAOs
-        CustomerDAO customerDAO = new CustomerDAOImpl();
-        AccountDAO accountDAO = new AccountDAOImpl();
-        TransactionDAO transactionDAO = new TransactionDAOImpl();
-        ProcessedRequestDAO processedRequestDAO = new ProcessedRequestDAOImpl();
-
-        // Initialize Services
-        AuthService authService = new AuthService(customerDAO);
-        TransactionService transactionService = new TransactionService(transactionDAO, processedRequestDAO);
-        AccountService accountService = new AccountService(accountDAO, transactionService);
-
-        // Initialize or migrate database schema before using DAOs
+    public void start(Stage primaryStage) {
+        // Initialize database tables (optional – if they don't exist)
         DatabaseInitializer.initializeDatabase();
 
-        // FIXED: pass transactionDAO as 5th argument
-        TransferService transferService = new TransferService(accountDAO, customerDAO,
-                accountService, transactionService, transactionDAO);
+        try {
+            // Initialize DAOs
+            CustomerDAO customerDAO = new CustomerDAOImpl();
+            AccountDAO accountDAO = new AccountDAOImpl();
+            TransactionDAO transactionDAO = new TransactionDAOImpl();
+            ProcessedRequestDAO processedRequestDAO = new ProcessedRequestDAOImpl();
 
-        LoanService loanService = new LoanService(transactionDAO);
-        CSVExportService csvExportService = new CSVExportService();
+            // Initialize Services
+            AuthService authService = new AuthService(customerDAO);
+            TransactionService transactionService = new TransactionService(transactionDAO, processedRequestDAO);
+            AccountService accountService = new AccountService(accountDAO, transactionService);
+            TransferService transferService = new TransferService(accountDAO, customerDAO, accountService, transactionService, transactionDAO);
+            LoanService loanService = new LoanService(transactionDAO);
+            CSVExportService csvExportService = new CSVExportService();
 
-        // Optional: Insert sample data (uncomment if needed)
-        // DataInitializer.initSampleData(customerDAO, accountDAO);
+            // Create ScreenManager with all services
+            ScreenManager screenManager = new ScreenManager(primaryStage, authService, accountService,
+                    transactionService, transferService, loanService, csvExportService);
 
-        screenManager = new ScreenManager(primaryStage, authService, accountService,
-                transactionService, transferService, loanService, csvExportService);
-        screenManager.showLoginScreen();
-        primaryStage.setTitle("IgirePay - Desktop");
-        primaryStage.show();
+            // Show login screen first
+            screenManager.showLoginScreen();
+            primaryStage.setTitle("IgirePay - Desktop");
+            primaryStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {

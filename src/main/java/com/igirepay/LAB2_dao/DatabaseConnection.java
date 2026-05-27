@@ -10,7 +10,7 @@ public class DatabaseConnection {
     private static final String PASSWORD = "123"; // change
 
     static {
-        try { Class.forName("jdbc.postgresql.Driver"); }
+        try { Class.forName("org.postgresql.Driver"); }
         catch (ClassNotFoundException e) { throw new RuntimeException(e); }
     }
 

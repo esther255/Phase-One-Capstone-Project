@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ConsoleApp {
-    private static Scanner sc = new Scanner(System.in);
+    private static final Scanner sc = new Scanner(System.in);
     private static AuthService authService;
     private static AccountService accountService;
     private static TransactionService transactionService;
