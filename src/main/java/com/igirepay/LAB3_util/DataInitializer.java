@@ -16,7 +16,7 @@ public class DataInitializer {
             CustomerDAO customerDAO = new CustomerDAOImpl();
             AccountDAO accountDAO = new AccountDAOImpl();
 
-
+            
             if (!customerDAO.findByPhoneNumber("0790079144").isPresent()) {
                 Customer sample = new Customer("Esther", "esther@gmail.com", "0790079144",
                         PasswordUtil.hashPin("12345"));

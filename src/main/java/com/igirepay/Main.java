@@ -6,19 +6,20 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+
     @Override
     public void start(Stage primaryStage) {
-        // Initialize database tables (optional – if they don't exist)
-        DatabaseInitializer.initializeDatabase();
+
+        initializeDatabase();
 
         try {
-            // Initialize DAOs
+
             CustomerDAO customerDAO = new CustomerDAOImpl();
             AccountDAO accountDAO = new AccountDAOImpl();
             TransactionDAO transactionDAO = new TransactionDAOImpl();
             ProcessedRequestDAO processedRequestDAO = new ProcessedRequestDAOImpl();
 
-            // Initialize Services
+
             AuthService authService = new AuthService(customerDAO);
             TransactionService transactionService = new TransactionService(transactionDAO, processedRequestDAO);
             AccountService accountService = new AccountService(accountDAO, transactionService);
@@ -26,17 +27,23 @@ public class Main extends Application {
             LoanService loanService = new LoanService(transactionDAO);
             CSVExportService csvExportService = new CSVExportService();
 
-            // Create ScreenManager with all services
             ScreenManager screenManager = new ScreenManager(primaryStage, authService, accountService,
                     transactionService, transferService, loanService, csvExportService);
 
-            // Show login screen first
+
             screenManager.showLoginScreen();
             primaryStage.setTitle("IgirePay - Desktop");
             primaryStage.show();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+
+    private void initializeDatabase() {
+
+        System.out.println("Database initialisation placeholder");
     }
 
     public static void main(String[] args) {
