@@ -1,4 +1,4 @@
-﻿package com.igirepay.LAB2_dao;
+package com.igirepay.LAB2_dao;
 
 import com.igirepay.LAB1_model.Customer;
 import java.util.Optional;

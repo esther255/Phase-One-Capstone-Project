@@ -1,4 +1,4 @@
-﻿module com.igirepay.igirepay {
+module com.igirepay.igirepay {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.base;

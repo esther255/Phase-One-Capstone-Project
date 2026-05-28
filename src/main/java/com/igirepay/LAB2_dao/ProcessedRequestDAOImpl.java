@@ -1,4 +1,4 @@
-﻿package com.igirepay.LAB2_dao;
+package com.igirepay.LAB2_dao;
 
 import java.sql.*;
 

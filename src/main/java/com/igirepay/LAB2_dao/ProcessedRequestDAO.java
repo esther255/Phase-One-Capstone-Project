@@ -1,4 +1,4 @@
-﻿package com.igirepay.LAB2_dao;
+package com.igirepay.LAB2_dao;
 
 public interface ProcessedRequestDAO {
     boolean exists(String referenceId) throws Exception;

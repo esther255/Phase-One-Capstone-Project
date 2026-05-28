@@ -1,4 +1,4 @@
-﻿package com.igirepay;
+package com.igirepay;
 
 import com.igirepay.LAB1_service.*;
 import com.igirepay.LAB2_dao.*;

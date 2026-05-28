@@ -1,4 +1,4 @@
-﻿package com.igirepay.LAB3_util;
+package com.igirepay.LAB3_util;
 
 import com.igirepay.LAB2_dao.AccountDAO;
 import com.igirepay.LAB2_dao.AccountDAOImpl;

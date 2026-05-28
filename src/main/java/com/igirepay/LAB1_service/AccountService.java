@@ -1,4 +1,4 @@
-﻿package com.igirepay.LAB1_service;
+package com.igirepay.LAB1_service;
 
 import com.igirepay.LAB2_dao.AccountDAO;
 import com.igirepay.LAB3_exception.*;

@@ -1,4 +1,4 @@
-﻿package com.igirepay;
+package com.igirepay;
 
 import javafx.application.Application;
 

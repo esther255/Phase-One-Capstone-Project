@@ -1,4 +1,4 @@
-﻿package com.igirepay.LAB3_util;
+package com.igirepay.LAB3_util;
 
 import java.util.UUID;
 

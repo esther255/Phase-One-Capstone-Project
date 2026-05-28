@@ -1,4 +1,4 @@
-﻿package com.igirepay.LAB1_model;
+package com.igirepay.LAB1_model;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

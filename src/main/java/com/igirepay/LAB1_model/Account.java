@@ -1,4 +1,4 @@
-﻿package com.igirepay.LAB1_model;
+package com.igirepay.LAB1_model;
 
 import com.igirepay.LAB3_exception.DuplicateTransactionException;
 import com.igirepay.LAB3_exception.InsufficientBalanceException;

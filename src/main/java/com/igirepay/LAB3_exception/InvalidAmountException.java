@@ -1,4 +1,4 @@
-﻿package com.igirepay.LAB3_exception;
+package com.igirepay.LAB3_exception;
 
 public class InvalidAmountException extends Exception {
     public InvalidAmountException(String message) {
