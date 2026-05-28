@@ -24,7 +24,6 @@ public abstract class Account {
         this.createdAt = LocalDateTime.now();
     }
 
-    // Getters and Setters
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 
@@ -40,7 +39,6 @@ public abstract class Account {
     public LocalDateTime getCreatedAt() { return createdAt; }
     public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
 
-    // Core business methods (to be overridden by subclasses)
     public void deposit(BigDecimal amount) throws InvalidAmountException {
         if (amount == null || amount.compareTo(BigDecimal.ZERO) <= 0) {
             throw new InvalidAmountException("Deposit amount must be positive");

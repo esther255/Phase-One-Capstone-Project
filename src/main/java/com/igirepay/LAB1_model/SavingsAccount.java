@@ -11,7 +11,7 @@ public class SavingsAccount extends Account {
     public SavingsAccount() {
         this.withdrawalLimit = 3;
         this.withdrawalCount = 0;
-        this.withdrawalFee = BigDecimal.valueOf(500); // e.g., 500 RWF
+        this.withdrawalFee = BigDecimal.valueOf(500);
     }
 
     public SavingsAccount(int customerId, BigDecimal initialBalance, int withdrawalLimit, BigDecimal withdrawalFee) {

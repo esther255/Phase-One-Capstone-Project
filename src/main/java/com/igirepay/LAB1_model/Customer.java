@@ -49,5 +49,6 @@ public class Customer {
     }
 
     public void setPin(String pin) {
+        this.pinHash = pin;
     }
 }
