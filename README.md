@@ -1,46 +1,52 @@
-# IgirePay — Desktop Payment Gateway
+# IgirePay
 
-A secure desktop digital wallet app built with JavaFX and PostgreSQL, inspired by MTN MoMo.
-
----
-
-## Features
-
-- Register & login with a 5-digit PIN
-- Wallet account — send, deposit, withdraw
-- Savings account with withdrawal limits and fees
-- Transfer money by phone number
-- Quick loan (up to 50,000 RWF)
-- Transaction history + CSV export
-- Duplicate transaction prevention using reference IDs
-- Account lockout after 3 failed PIN attempts
+IgirePay is a desktop wallet app I built as my Phase One Capstone project. It works like a simple mobile money system where you can send money, save, and track your transactions.
 
 ---
 
-## Tech Stack
+## What you can do
 
-Java 21 · JavaFX 21 · PostgreSQL 17 · JDBC · Maven
+- Create an account and log in with a PIN
+- Activate a wallet to send and receive money
+- Open a savings account
+- Send money to someone using their phone number
+- Deposit and withdraw from your wallet
+- Request a small loan
+- See all your transactions and export them to CSV
+- Change your PIN anytime
 
 ---
 
-## Setup
+## Built with
 
-**1. Create the database**
+- Java 21
+- JavaFX 21
+- PostgreSQL 17
+- JDBC
+- Maven
+
+---
+
+## How to run it
+
+First, create the database and run the schema:
+
 ```sql
 CREATE DATABASE igirepay;
+```
+
+```bash
 psql -U postgres -d igirepay -f src/main/resources/schema.sql
 ```
 
-**2. Update database credentials**
+Then open `DatabaseConnection.java` and put in your PostgreSQL password:
 
-Edit `src/main/java/com/igirepay/LAB2_dao/DatabaseConnection.java`:
 ```java
-private static final String URL      = "jdbc:postgresql://localhost:5432/igirepay";
-private static final String USER     = "postgres";
 private static final String PASSWORD = "your_password";
 ```
 
-**3. Run**
+Then start the app:
+
 ```bash
 mvn clean javafx:run
 ```
@@ -49,6 +55,4 @@ mvn clean javafx:run
 
 ## Author
 
-**Esther**
-Igire Rwanda Organisation — Backend Development, Phase One Capstone
-2026
+Esther — Igire Rwanda Organisation, 2026
