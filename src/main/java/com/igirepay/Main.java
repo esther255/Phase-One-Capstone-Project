@@ -9,16 +9,13 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-
         initializeDatabase();
 
         try {
-
             CustomerDAO customerDAO = new CustomerDAOImpl();
             AccountDAO accountDAO = new AccountDAOImpl();
             TransactionDAO transactionDAO = new TransactionDAOImpl();
             ProcessedRequestDAO processedRequestDAO = new ProcessedRequestDAOImpl();
-
 
             AuthService authService = new AuthService(customerDAO);
             TransactionService transactionService = new TransactionService(transactionDAO, processedRequestDAO);
@@ -30,7 +27,6 @@ public class Main extends Application {
             ScreenManager screenManager = new ScreenManager(primaryStage, authService, accountService,
                     transactionService, transferService, loanService, csvExportService);
 
-
             screenManager.showLoginScreen();
             primaryStage.setTitle("IgirePay - Desktop");
             primaryStage.show();
@@ -40,10 +36,9 @@ public class Main extends Application {
         }
     }
 
-
     private void initializeDatabase() {
-
         System.out.println("Database initialisation placeholder");
+        // TODO: actual DB setup
     }
 
     public static void main(String[] args) {
