@@ -1,20 +1,54 @@
-# Phase-One-Capstone-Project
-##was containing 3Labs 
- LAB1: that shows oop concept designs in action
- LAB2: that shows  database integration with jdbc
- LAB3: that shows  javafx this phases it combine those both labs 
-       then shows UI of our apps 
+# IgirePay — Desktop Payment Gateway
 
-##here there is technology we use to design our igirepay- Desktop
-AI that technology was helping me to understand my capstone-project as and was guided me 
-in building of it  by using #IntelliJ ideal(project structure)
-#postgresql(connectivity of database)
+A secure desktop digital wallet app built with JavaFX and PostgreSQL, inspired by MTN MoMo.
 
+---
 
+## Features
 
+- Register & login with a 5-digit PIN
+- Wallet account — send, deposit, withdraw
+- Savings account with withdrawal limits and fees
+- Transfer money by phone number
+- Quick loan (up to 50,000 RWF)
+- Transaction history + CSV export
+- Duplicate transaction prevention using reference IDs
+- Account lockout after 3 failed PIN attempts
 
-![img.png](img.png) 
+---
 
+## Tech Stack
 
-this screen shoot show how my dashboard look like
+Java 21 · JavaFX 21 · PostgreSQL 17 · JDBC · Maven
 
+---
+
+## Setup
+
+**1. Create the database**
+```sql
+CREATE DATABASE igirepay;
+psql -U postgres -d igirepay -f src/main/resources/schema.sql
+```
+
+**2. Update database credentials**
+
+Edit `src/main/java/com/igirepay/LAB2_dao/DatabaseConnection.java`:
+```java
+private static final String URL      = "jdbc:postgresql://localhost:5432/igirepay";
+private static final String USER     = "postgres";
+private static final String PASSWORD = "your_password";
+```
+
+**3. Run**
+```bash
+mvn clean javafx:run
+```
+
+---
+
+## Author
+
+**Esther**
+Igire Rwanda Organisation — Backend Development, Phase One Capstone
+2026
