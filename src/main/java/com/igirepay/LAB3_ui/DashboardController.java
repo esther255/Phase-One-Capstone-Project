@@ -1,4 +1,4 @@
-package com.igirepay.LAB3_ui;
+﻿package com.igirepay.LAB3_ui;
 
 import com.igirepay.ScreenManager;
 import com.igirepay.LAB1_model.Account;
@@ -62,19 +62,19 @@ public class DashboardController {
     }
 
     public Parent getView() {
-        // ── Root: yellow top + white bottom ───────────────────
+
         VBox root = new VBox();
         root.setStyle("-fx-background-color: #FFCC00;");
 
-        // ── HEADER ────────────────────────────────────────────
+
         VBox header = buildHeader();
 
-        // ── WHITE BODY ────────────────────────────────────────
+
         VBox body = new VBox(0);
         body.setStyle("-fx-background-color: #f5f5f5; -fx-background-radius: 24 24 0 0;");
         VBox.setVgrow(body, Priority.ALWAYS);
 
-        // ── Quick actions ──────────────────────────────────────
+
         HBox quickActions = buildQuickActions();
         quickActions.setStyle("-fx-background-color: white; -fx-background-radius: 24 24 0 0;");
         quickActions.setPadding(new Insets(22, 16, 18, 16));
@@ -82,13 +82,13 @@ public class DashboardController {
         Separator sep1 = new Separator();
         sep1.setPadding(new Insets(0, 16, 0, 16));
 
-        // ── Services grid ──────────────────────────────────────
+
         VBox servicesSection = buildServicesSection();
 
-        // ── Savings banner ─────────────────────────────────────
+
         HBox savingsBanner = buildSavingsBanner();
 
-        // ── Bottom nav ─────────────────────────────────────────
+
         HBox bottomNav = buildBottomNav();
         bottomNav.setStyle("-fx-background-color: white; -fx-border-color: #eee; -fx-border-width: 1 0 0 0;");
 
@@ -103,15 +103,15 @@ public class DashboardController {
         return root;
     }
 
-    // =========================================================================
-    //  HEADER  (yellow zone)
-    // =========================================================================
+
+
+
     private VBox buildHeader() {
         VBox header = new VBox(10);
         header.setPadding(new Insets(18, 20, 24, 20));
         header.setStyle("-fx-background-color: #FFCC00;");
 
-        // ── Top row: greeting + profile icon ──────────────────
+
         HBox topRow = new HBox();
         topRow.setAlignment(Pos.CENTER_LEFT);
 
@@ -133,12 +133,12 @@ public class DashboardController {
         profileBtn.setOnAction(e -> screenManager.showProfile());
         topRow.getChildren().addAll(greetBox, spacer, profileBtn);
 
-        // ── Balance card (or Activate Wallet prompt) ───────────
+
         VBox balCard = new VBox(6);
         balCard.setStyle("-fx-background-color: #1a237e; -fx-background-radius: 16; -fx-padding: 18; -fx-cursor: hand;");
 
         if (walletAccountId == 0) {
-            // ── NO WALLET: show activation prompt ─────────────
+
             Label noWalletIcon = new Label("💳");
             noWalletIcon.setStyle("-fx-font-size: 28;");
 
@@ -159,7 +159,7 @@ public class DashboardController {
             balCard.setOnMouseClicked(e -> screenManager.showWallet());
 
         } else {
-            // ── HAS WALLET: show balance ───────────────────────
+
             Label balTitle = new Label("Wallet Balance");
             balTitle.setStyle("-fx-text-fill: #90caf9; -fx-font-size: 12;");
 
@@ -190,10 +190,7 @@ public class DashboardController {
         return header;
     }
 
-    // =========================================================================
-    //  QUICK ACTIONS  (Send, Deposit, Withdraw, History)
-    // =========================================================================
-    private HBox buildQuickActions() {
+       private HBox buildQuickActions() {
         HBox row = new HBox(0);
         row.setAlignment(Pos.CENTER);
 
@@ -222,9 +219,6 @@ public class DashboardController {
         return box;
     }
 
-    // =========================================================================
-    //  SERVICES GRID
-    // =========================================================================
     private VBox buildServicesSection() {
         VBox section = new VBox(12);
         section.setPadding(new Insets(18, 16, 10, 16));
@@ -276,7 +270,7 @@ public class DashboardController {
         card.getChildren().addAll(iconLbl, nameLbl, subLbl);
         card.setOnMouseClicked(e -> navigate(label));
 
-        // Hover effect
+
         card.setOnMouseEntered(e -> card.setStyle(
                 "-fx-background-color: #fff9e6; -fx-background-radius: 14; -fx-cursor: hand;"));
         card.setOnMouseExited(e -> card.setStyle(
@@ -285,9 +279,6 @@ public class DashboardController {
         return card;
     }
 
-    // =========================================================================
-    //  SAVINGS BANNER
-    // =========================================================================
     private HBox buildSavingsBanner() {
         HBox banner = new HBox(14);
         banner.setAlignment(Pos.CENTER_LEFT);
@@ -320,10 +311,7 @@ public class DashboardController {
         return banner;
     }
 
-    // =========================================================================
-    //  BOTTOM NAV
-    // =========================================================================
-    private HBox buildBottomNav() {
+        private HBox buildBottomNav() {
         HBox nav = new HBox(0);
         nav.setAlignment(Pos.CENTER);
         nav.setPadding(new Insets(10, 0, 10, 0));
@@ -351,9 +339,6 @@ public class DashboardController {
         return box;
     }
 
-    // =========================================================================
-    //  NAVIGATION
-    // =========================================================================
     private void navigate(String action) {
         switch (action) {
             case "Send Money":

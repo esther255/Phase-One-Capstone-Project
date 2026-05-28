@@ -1,4 +1,4 @@
-package com.igirepay.igirepay;
+﻿package com.igirepay.igirepay;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

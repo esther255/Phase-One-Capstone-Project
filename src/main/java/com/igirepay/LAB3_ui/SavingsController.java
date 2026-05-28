@@ -1,4 +1,4 @@
-package com.igirepay.LAB3_ui;
+﻿package com.igirepay.LAB3_ui;
 
 import com.igirepay.ScreenManager;
 import com.igirepay.LAB1_model.SavingsAccount;
@@ -18,7 +18,7 @@ public class SavingsController {
     private final AccountService accountService;
     private VBox view;
 
-    // live labels updated after each action
+
     private Label balanceLabel;
     private Label withdrawalsLabel;
 
@@ -36,10 +36,8 @@ public class SavingsController {
         view.setPadding(new Insets(30));
         view.setStyle("-fx-background-color: #f4f6fb;");
 
-
         Label title = new Label("Savings Account");
         title.setStyle("-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #1a237e;");
-
 
         VBox infoCard = new VBox(8);
         infoCard.setStyle("-fx-background-color: white; -fx-background-radius: 10;"
@@ -65,12 +63,10 @@ public class SavingsController {
 
         infoCard.getChildren().addAll(balanceLabel, withdrawalsLabel, feeLabel);
 
-
         TextField amountField = new TextField();
         amountField.setPromptText("Enter amount (RWF)");
         amountField.setMaxWidth(300);
         amountField.setStyle("-fx-font-size: 14; -fx-padding: 8;");
-
 
         Button depositBtn = new Button("Deposit to Savings");
         depositBtn.setPrefWidth(300);
@@ -92,7 +88,6 @@ public class SavingsController {
             }
         });
 
-
         Button withdrawBtn = new Button("Withdraw from Savings");
         withdrawBtn.setPrefWidth(300);
         withdrawBtn.setStyle("-fx-background-color: #f57c00; -fx-text-fill: white;"
@@ -112,7 +107,6 @@ public class SavingsController {
                 showAlert("Error", ex.getMessage());
             }
         });
-
 
         Button deleteBtn = new Button("Close Savings Account");
         deleteBtn.setPrefWidth(300);
@@ -144,7 +138,6 @@ public class SavingsController {
             });
         });
 
-
         Button backBtn = new Button("← Back to Dashboard");
         backBtn.setPrefWidth(300);
         backBtn.setStyle("-fx-background-color: #1a237e; -fx-text-fill: white;"
@@ -153,7 +146,6 @@ public class SavingsController {
 
         view.getChildren().addAll(title, infoCard, amountField, depositBtn, withdrawBtn, deleteBtn, backBtn);
     }
-
 
     private void refreshInfo() {
         try {

@@ -1,4 +1,4 @@
-package com.igirepay.LAB3_util;
+﻿package com.igirepay.LAB3_util;
 
 import com.igirepay.LAB2_dao.AccountDAO;
 import com.igirepay.LAB2_dao.AccountDAOImpl;
@@ -16,7 +16,7 @@ public class DataInitializer {
             CustomerDAO customerDAO = new CustomerDAOImpl();
             AccountDAO accountDAO = new AccountDAOImpl();
 
-            
+
             if (!customerDAO.findByPhoneNumber("0790079144").isPresent()) {
                 Customer sample = new Customer("Esther", "esther@gmail.com", "0790079144",
                         PasswordUtil.hashPin("12345"));
@@ -24,7 +24,6 @@ public class DataInitializer {
                 customerDAO.save(sample);
                 WalletAccount wallet = new WalletAccount(sample.getId(), BigDecimal.valueOf(100000));
                 accountDAO.save(wallet);
-
 
                 SavingsAccount savings = new SavingsAccount(sample.getId(), BigDecimal.valueOf(50000), 3, BigDecimal.valueOf(500));
                 accountDAO.save(savings);

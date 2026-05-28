@@ -1,4 +1,4 @@
-package com.igirepay.LAB3_ui;
+﻿package com.igirepay.LAB3_ui;
 
 import com.igirepay.LAB1_service.AuthService;
 import com.igirepay.ScreenManager;
@@ -77,7 +77,7 @@ public class RegisterController {
         String pin = pinField.getText().trim();
         String confirmPin = confirmPinField.getText().trim();
 
-        // Validation
+
         if (fullName.isEmpty() || email.isEmpty() || phone.isEmpty() || pin.isEmpty() || confirmPin.isEmpty()) {
             errorLabel.setText("All fields are required.");
             errorLabel.setStyle("-fx-fill: red;");
@@ -109,11 +109,11 @@ public class RegisterController {
             errorLabel.setStyle("-fx-fill: green;");
             errorLabel.setText("Registration successful! Redirecting to login...");
 
-            // Disable register button to prevent double submission
+
             Button registerBtn = (Button) view.getChildren().get(view.getChildren().size() - 3);
             registerBtn.setDisable(true);
 
-            // Redirect to login screen after 2 seconds
+
             new Thread(() -> {
                 try {
                     Thread.sleep(2000);

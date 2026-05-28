@@ -1,4 +1,4 @@
-package com.igirepay;
+﻿package com.igirepay;
 
 import com.igirepay.LAB1_service.*;
 import com.igirepay.LAB2_dao.*;
@@ -37,8 +37,7 @@ public class Main extends Application {
     }
 
     private void initializeDatabase() {
-        // Run schema.sql manually against your PostgreSQL database before first launch:
-        //   psql -U postgres -d igirepay -f src/main/resources/schema.sql
+
         System.out.println("Database connection ready. Ensure schema.sql has been applied.");
     }
 

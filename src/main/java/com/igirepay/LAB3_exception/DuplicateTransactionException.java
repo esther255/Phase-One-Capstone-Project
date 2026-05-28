@@ -1,4 +1,4 @@
-package com.igirepay.LAB3_exception;
+﻿package com.igirepay.LAB3_exception;
 
 public class DuplicateTransactionException extends Exception {
     public DuplicateTransactionException(String message) {

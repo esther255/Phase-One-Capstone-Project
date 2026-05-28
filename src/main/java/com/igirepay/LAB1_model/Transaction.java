@@ -1,4 +1,4 @@
-package com.igirepay.LAB1_model;
+﻿package com.igirepay.LAB1_model;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -11,7 +11,7 @@ public class Transaction {
     private BigDecimal amount;
     private LocalDateTime createdAt;
     private Integer senderAccountId;
-    private Integer recipientAccountId;//
+    private Integer recipientAccountId;
     private String description;
 
     public Transaction() {}
@@ -27,7 +27,6 @@ public class Transaction {
         this.description = description;
         this.createdAt = LocalDateTime.now();
     }
-
 
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }

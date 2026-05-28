@@ -1,4 +1,4 @@
-package com.igirepay.LAB1_model;
+﻿package com.igirepay.LAB1_model;
 
 import com.igirepay.LAB3_exception.DuplicateTransactionException;
 import com.igirepay.LAB3_exception.InsufficientBalanceException;
@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 public abstract class Account {
     protected int id;
     protected int customerId;
-    protected String accountType;   //
+    protected String accountType;
     protected BigDecimal balance;
     protected LocalDateTime createdAt;
 
@@ -55,7 +55,6 @@ public abstract class Account {
         }
         this.balance = this.balance.subtract(amount);
     }
-
 
     public abstract Transaction processTransaction(Transaction transaction)
             throws InvalidAmountException, InsufficientBalanceException,

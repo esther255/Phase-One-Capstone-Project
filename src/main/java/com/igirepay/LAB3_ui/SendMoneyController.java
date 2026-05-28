@@ -1,4 +1,4 @@
-package com.igirepay.LAB3_ui;
+﻿package com.igirepay.LAB3_ui;
 
 import com.igirepay.ScreenManager;
 import com.igirepay.LAB1_service.AccountService;
@@ -37,11 +37,11 @@ public class SendMoneyController {
         view.setPadding(new Insets(30));
         view.setStyle("-fx-background-color: #f4f6fb;");
 
-        // ── Title ──────────────────────────────────────────────
+
         Label title = new Label("Send Money");
         title.setStyle("-fx-font-size: 22; -fx-font-weight: bold; -fx-text-fill: #1a237e;");
 
-        // ── Balance card ───────────────────────────────────────
+
         VBox balanceCard = new VBox(4);
         balanceCard.setStyle("-fx-background-color: #1a237e; -fx-background-radius: 10;"
                 + "-fx-padding: 15;");
@@ -58,7 +58,7 @@ public class SendMoneyController {
         }
         balanceCard.getChildren().addAll(balLbl, balValue);
 
-        // ── Form ───────────────────────────────────────────────
+
         Label recipientLbl = new Label("Recipient Phone Number");
         recipientLbl.setStyle("-fx-font-size: 13; -fx-text-fill: #333;");
         TextField recipientPhone = new TextField();
@@ -80,11 +80,11 @@ public class SendMoneyController {
         noteField.setMaxWidth(400);
         noteField.setStyle("-fx-font-size: 14; -fx-padding: 10;");
 
-        // ── Error label ────────────────────────────────────────
+
         Text errorText = new Text();
         errorText.setStyle("-fx-fill: #c62828; -fx-font-size: 13;");
 
-        // ── Send button ────────────────────────────────────────
+
         Button sendBtn = new Button("Send Money →");
         sendBtn.setPrefWidth(400);
         sendBtn.setStyle("-fx-background-color: #1a237e; -fx-text-fill: white;"
@@ -96,7 +96,7 @@ public class SendMoneyController {
             String rawAmt = amountField.getText().trim();
             String note   = noteField.getText().trim();
 
-            // ── Validation ─────────────────────────────────────
+
             if (phone.isEmpty()) {
                 errorText.setText("Please enter the recipient's phone number.");
                 return;
@@ -121,12 +121,12 @@ public class SendMoneyController {
                 return;
             }
 
-            // ── Execute transfer ───────────────────────────────
+
             try {
                 String ref = transferService.sendMoney(walletAccountId, phone, amount,
                         note.isEmpty() ? null : note);
 
-                // Show receipt dialog
+
                 showReceipt(phone, amount, ref, note);
                 screenManager.showDashboard();
 
@@ -135,7 +135,7 @@ public class SendMoneyController {
             }
         });
 
-        // ── Back button ────────────────────────────────────────
+
         Button backBtn = new Button("← Back to Dashboard");
         backBtn.setPrefWidth(400);
         backBtn.setStyle("-fx-background-color: #9e9e9e; -fx-text-fill: white;"
@@ -152,7 +152,7 @@ public class SendMoneyController {
         );
     }
 
-    /** Shows a styled receipt alert after a successful transfer. */
+
     private void showReceipt(String recipientPhone, BigDecimal amount, String ref, String note) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Transfer Successful");

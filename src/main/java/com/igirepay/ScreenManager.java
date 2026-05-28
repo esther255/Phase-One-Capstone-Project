@@ -1,4 +1,4 @@
-package com.igirepay;
+﻿package com.igirepay;
 
 import com.igirepay.LAB1_service.*;
 import com.igirepay.LAB3_ui.*;
@@ -15,7 +15,7 @@ public class ScreenManager {
     private final LoanService loanService;
     private final CSVExportService csvExportService;
 
-    // Session data
+
     private int currentCustomerId;
     private String currentCustomerName;
 
