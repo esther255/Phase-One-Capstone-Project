@@ -75,11 +75,15 @@ public class AccountOverviewController {
         table.getColumns().addAll(idCol, typeCol, balanceCol, createdCol, extraCol);
         table.setItems(loadAccounts());
 
+        Button walletBtn = new Button("Manage Wallet");
+        walletBtn.setStyle("-fx-background-color: #1a237e; -fx-text-fill: white; -fx-font-size: 14;");
+        walletBtn.setOnAction(e -> screenManager.showWallet());
+
         Button back = new Button("Back to Dashboard");
         back.setStyle("-fx-background-color: #1976d2; -fx-text-fill: white; -fx-font-size: 14;");
         back.setOnAction(e -> screenManager.showDashboard());
 
-        view.getChildren().addAll(title, table, back);
+        view.getChildren().addAll(title, table, walletBtn, back);
     }
 
     private ObservableList<Account> loadAccounts() {

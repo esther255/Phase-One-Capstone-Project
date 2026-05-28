@@ -52,11 +52,18 @@ public class AccountService {
     }
 
     public void createWalletAccount(int customerId, BigDecimal initial) throws Exception {
+        boolean alreadyHasWallet = accountDAO.findByCustomerId(customerId).stream()
+                .anyMatch(a -> "WALLET".equals(a.getAccountType()));
+        if (alreadyHasWallet) throw new Exception("You already have a wallet account");
         WalletAccount acc = new WalletAccount(customerId, initial);
         accountDAO.save(acc);
     }
 
     public void createSavingsAccount(int customerId, BigDecimal initial, int limit, BigDecimal fee) throws Exception {
+
+        boolean alreadyHasSavings = accountDAO.findByCustomerId(customerId).stream()
+                .anyMatch(a -> "SAVINGS".equals(a.getAccountType()));
+        if (alreadyHasSavings) throw new Exception("You already have a savings account");
         SavingsAccount acc = new SavingsAccount(customerId, initial, limit, fee);
         accountDAO.save(acc);
     }

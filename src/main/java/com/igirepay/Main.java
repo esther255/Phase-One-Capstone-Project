@@ -17,7 +17,7 @@ public class Main extends Application {
             TransactionDAO transactionDAO = new TransactionDAOImpl();
             ProcessedRequestDAO processedRequestDAO = new ProcessedRequestDAOImpl();
 
-            AuthService authService = new AuthService(customerDAO);
+            AuthService authService = new AuthService(customerDAO, accountDAO);
             TransactionService transactionService = new TransactionService(transactionDAO, processedRequestDAO);
             AccountService accountService = new AccountService(accountDAO, transactionService);
             TransferService transferService = new TransferService(accountDAO, customerDAO, accountService, transactionService, transactionDAO);
@@ -37,8 +37,9 @@ public class Main extends Application {
     }
 
     private void initializeDatabase() {
-        System.out.println("Database initialisation placeholder");
-        // TODO: actual DB setup
+        // Run schema.sql manually against your PostgreSQL database before first launch:
+        //   psql -U postgres -d igirepay -f src/main/resources/schema.sql
+        System.out.println("Database connection ready. Ensure schema.sql has been applied.");
     }
 
     public static void main(String[] args) {

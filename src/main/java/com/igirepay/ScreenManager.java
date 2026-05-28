@@ -5,7 +5,6 @@ import com.igirepay.LAB3_ui.*;
 import com.igirepay.LAB1_model.Transaction;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import java.util.Scanner;
 
 public class ScreenManager {
     private final Stage stage;
@@ -53,14 +52,21 @@ public class ScreenManager {
         stage.setScene(new Scene(dashboard.getView(), 800, 600));
     }
 
+    public void showWallet() {
+        WalletController wallet = new WalletController(this, currentCustomerId, accountService);
+        stage.setScene(new Scene(wallet.getView(), 520, 600));
+    }
+
     public void showSendMoney() {
         int walletId = getWalletAccountId();
         if (walletId == -1) {
-            showErrorDialog("No Wallet Account", "You don't have a wallet account to send money from.");
+            showErrorDialog("No Wallet Account",
+                    "You don't have a wallet account yet.\nGo to the dashboard and click 'Send Money' to create one.");
             return;
         }
-        SendMoneyController send = new SendMoneyController(this, currentCustomerId, walletId, transferService);
-        stage.setScene(new Scene(send.getView(), 500, 550));
+        SendMoneyController send = new SendMoneyController(
+                this, currentCustomerId, walletId, transferService, accountService);
+        stage.setScene(new Scene(send.getView(), 500, 620));
     }
 
     public void showDepositWithdraw(String accountType) {
@@ -69,7 +75,17 @@ public class ScreenManager {
             showErrorDialog("Account Not Found", "The selected account type is not available for your customer profile.");
             return;
         }
-        DepositWithdrawController dw = new DepositWithdrawController(this, accountId, accountType, accountService, currentCustomerId, currentCustomerName);
+        DepositWithdrawController dw = new DepositWithdrawController(this, accountId, accountType, "DEPOSIT", accountService, currentCustomerId, currentCustomerName);
+        stage.setScene(new Scene(dw.getView(), 450, 500));
+    }
+
+    public void showWithdraw(String accountType) {
+        int accountId = (accountType.equals("SAVINGS")) ? getSavingsAccountId() : getWalletAccountId();
+        if (accountId == -1) {
+            showErrorDialog("Account Not Found", "The selected account type is not available for your customer profile.");
+            return;
+        }
+        DepositWithdrawController dw = new DepositWithdrawController(this, accountId, accountType, "WITHDRAW", accountService, currentCustomerId, currentCustomerName);
         stage.setScene(new Scene(dw.getView(), 450, 500));
     }
 
