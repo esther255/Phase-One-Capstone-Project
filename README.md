@@ -55,4 +55,4 @@ mvn clean javafx:run
 
 ## Author
 
-Esther — Igire Rwanda Organisation, 2026
+Esther Ufiteyesu — Igire Rwanda Organisation, 2026
